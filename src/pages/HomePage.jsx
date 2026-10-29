@@ -1,3 +1,4 @@
+import ContactSection from '../components/ContactSection.jsx'
 import PageSection from '../components/PageSection.jsx'
 
 const sections = [
@@ -27,13 +28,6 @@ const sections = [
     title: 'Projects',
     text: "여기는 Projects 섹션입니다. 대표작 썸네일 3-4개와 '더 보기' 버튼이 들어갈 예정입니다.",
   },
-  {
-    id: 'contact',
-    label: '05',
-    title: 'Contact',
-    dark: true,
-    text: '여기는 Contact 섹션입니다. 연락처, SNS, 간단한 메시지 폼이 들어갈 예정입니다.',
-  },
 ]
 
 export default function HomePage() {
@@ -44,6 +38,9 @@ export default function HomePage() {
           <PageSection {...rest}>{text}</PageSection>
         </div>
       ))}
+      <div id="contact">
+        <ContactSection />
+      </div>
     </main>
   )
 }
