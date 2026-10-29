@@ -53,7 +53,7 @@ export default function GuestbookForm({ onSubmitted }) {
         방명록 남기기
       </Typography>
       <TextField label="이름" size="small" required value={form.name} onChange={set('name')} sx={fieldSx}
-        slotProps={{ htmlInput: { maxLength: 30 } }} helperText="이름은 공개되지 않아요" />
+        slotProps={{ htmlInput: { maxLength: 30 } }} helperText="방명록 목록에 공개돼요" />
       <TextField label="메시지" size="small" required multiline minRows={3} value={form.message}
         onChange={set('message')} sx={fieldSx} slotProps={{ htmlInput: { maxLength: 500 } }} />
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>

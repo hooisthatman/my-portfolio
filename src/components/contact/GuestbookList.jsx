@@ -7,7 +7,7 @@ import { supabase } from '../../lib/supabase.js'
 const formatDate = (iso) =>
   new Date(iso).toLocaleString('ko-KR', { dateStyle: 'medium', timeStyle: 'short' })
 
-// 우측 두 번째 블록: 방명록 목록 (최근 순). name/email/phone은 DB 권한상 조회되지 않는다.
+// 우측 두 번째 블록: 방명록 목록 (최근 순). email/phone은 DB 권한상 조회되지 않는다.
 export default function GuestbookList({ refreshKey }) {
   const [entries, setEntries] = useState([])
   const [state, setState] = useState('loading')
@@ -16,7 +16,7 @@ export default function GuestbookList({ refreshKey }) {
     let cancelled = false
     supabase
       .from('guestbook')
-      .select('id, message, rating, created_at')
+      .select('id, name, message, rating, created_at')
       .order('created_at', { ascending: false })
       .limit(20)
       .then(({ data, error }) => {
@@ -48,6 +48,7 @@ export default function GuestbookList({ refreshKey }) {
                 sx={{ '& .MuiRating-iconFilled': { color: 'var(--color-accent)' }, '& .MuiRating-iconEmpty': { color: 'rgba(255,255,255,0.3)' } }} />
               <Typography variant="caption" sx={{ color: 'var(--color-text-on-dark-muted)' }}>{formatDate(e.created_at)}</Typography>
             </Box>
+            <Typography variant="subtitle2" sx={{ fontWeight: 700, mb: 0.5 }}>{e.name}</Typography>
             <Typography sx={{ whiteSpace: 'pre-wrap', wordBreak: 'break-word' }}>{e.message}</Typography>
           </Box>
         ))}
